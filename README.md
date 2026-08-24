@@ -20,14 +20,6 @@
 └── README.md
 ```
 
-## เริ่ม Database
-
-วิธีที่แนะนำสำหรับ development คือใช้ PostgreSQL ผ่าน Docker:
-
-```powershell
-docker compose up -d postgres
-```
-
 ## รันทั้งระบบด้วย Batch
 
 หลังติดตั้งและเปิด Docker Desktop แล้ว สามารถเริ่ม database, backend และ frontend พร้อมกันด้วย:
