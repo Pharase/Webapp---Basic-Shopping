@@ -1,0 +1,22 @@
+<main class="account-page">
+    <a routerLink="/" class="brand">morrow</a>
+    <section class="account-card" aria-labelledby="register-title">
+    <p class="eyebrow">Member access</p>
+    <h1 id="register-title">Create an account.</h1>
+    <p class="muted">Register to add products to your cart.</p>
+
+    <form (ngSubmit)="register()">
+        <label for="username">Username</label>
+        <input id="username" name="username" [(ngModel)]="username" autocomplete="username" required>
+        <label for="fullName">Full name</label>
+        <input id="fullName" name="fullName" [(ngModel)]="fullName" autocomplete="name" required>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" [(ngModel)]="email" autocomplete="email" required>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" [(ngModel)]="password" autocomplete="new-password" required>
+        @if (error()) { <p class="error" role="alert">{{ error() }}</p> }
+        <button type="submit" [disabled]="saving()">{{ saving() ? 'Creating account...' : 'Create account' }} <span>-></span></button>
+    </form>
+    <p class="switch-link">Already registered? <a routerLink="/credential">Sign in</a></p>
+    </section>
+</main>

@@ -1,0 +1,13 @@
+<header class="topbar">
+    <a class="wordmark" routerLink="/" aria-label="Morrow home">Borrow&lend</a>
+    <nav aria-label="Primary navigation">
+        <a routerLink="/">Home</a>
+        @if (isLoggedIn()) {
+        <button type="button" class="logout-button" (click)="logout()">Log out</button>
+        } @else {
+        <a routerLink="/credential">Sign in</a>
+        <a routerLink="/register">Register</a>
+        }
+        <a routerLink="/cart" class="bag">Cart <span>{{ cartCount() }}</span></a>
+    </nav>
+</header>

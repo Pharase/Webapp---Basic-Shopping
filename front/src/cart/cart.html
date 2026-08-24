@@ -1,0 +1,30 @@
+<main class="cart-page">
+  <header><a routerLink="/" class="brand">morrow</a><a routerLink="/" class="back">Back to store</a></header>
+  <section aria-labelledby="cart-title">
+    <p class="eyebrow">Your selection</p>
+    <h1 id="cart-title">The bag</h1>
+    @if (items().length === 0) {
+      <p class="empty">Your bag is waiting for something good.</p>
+      <a routerLink="/" class="primary-link">Explore the collection <span>-></span></a>
+    } @else {
+      @for (item of items(); track item.id) {
+        <article class="item">@if (item.imageUrl) { <img [src]="item.imageUrl" [alt]="item.name"> }
+          <div>
+          <h2>{{ item.name }}</h2>
+          <p>${{ item.price }} each</p>
+          <div class="quantity" aria-label="Quantity controls">
+            <button type="button" (click)="decrement(item.id)" [disabled]="item.quantity === 1" aria-label="Decrease quantity">-</button>
+            <span>{{ item.quantity }}</span>
+            <button type="button" (click)="increment(item.id)" [disabled]="item.quantity >= item.stock" aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+        <button type="button" class="remove" (click)="remove(item.id)">Cancel item</button>
+      </article>
+      }
+      <div class="total"><span>Total</span><strong>${{ total() }}</strong></div>
+      @if (checkoutError()) { <p class="error" role="alert">{{ checkoutError() }}</p> }
+      @if (checkoutSuccess()) { <p class="success" role="status">Order completed successfully.</p> }
+      <button class="checkout" type="button" (click)="checkout()" [disabled]="checkingOut()">{{ checkingOut() ? 'Processing...' : 'Checkout' }} <span>-></span></button>
+    }
+  </section>
+</main>
